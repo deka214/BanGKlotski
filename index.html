@@ -29,6 +29,7 @@
 
       #game-wrapper {
         position: relative;
+        overflow: hidden;
       }
 
       #game-wrapper img.board-bg {
@@ -46,6 +47,45 @@
         width: 49.5%;
         height: 89.5%;
         overflow: hidden;
+      }
+
+      /* 内部棋盘容器：用于相对定位 */
+      #board-inner {
+        position: relative;
+        width: 960px;
+        height: 540px;
+        margin: 0 auto;
+      }
+
+      /* 电梯楼层像素数字 */
+      #elevator-floor {
+        position: absolute;
+        left: 4.4%;
+        top: 23%;
+        width: 14%;
+        height: 18%;
+        z-index: 5;
+        pointer-events: none;
+        background-color: #000000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .floor-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(7, 1fr);
+        gap: 1.6%;
+        width: 45%; /* 数字宽度 */
+        height: 75%; /* 数字高度 */
+        margin-top: 10%; /* 垂直偏移 */
+      }
+      .floor-grid .px {
+        width: 100%;
+        height: 100%;
+      }
+      .floor-grid .px.on {
+        background-color: #f3ae4e;
       }
 
       .block {
@@ -88,7 +128,7 @@
       #control-panel {
         position: absolute;
         top: 50%;
-        right: 2%;
+        right: 2%; /* 桌面端默认位置 */
         transform: translateY(-50%);
         display: flex;
         flex-direction: column;
@@ -114,7 +154,7 @@
       }
 
       .btn {
-        padding: 8px 20px;
+        padding: 8px 4px;
         border: 2px solid #e8b74a;
         background: rgba(0, 0, 0, 0.6);
         color: #e8b74a;
@@ -129,7 +169,7 @@
         text-align: center;
       }
 
-      .btn:hover {
+      .btn:hover:not(#btn-voice) {
         background: #e8b74a;
         color: #1a1a1a;
       }
@@ -139,7 +179,12 @@
         cursor: not-allowed;
       }
 
-      /* Victory overlay */
+      .btn.toggle-on {
+        background: #e8b74a;
+        color: #1a1a1a;
+      }
+
+      /* 胜利结算界面 */
       #victory-overlay {
         display: none;
         position: fixed;
@@ -219,8 +264,8 @@
         z-index: 200;
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
+        gap: 4px;
+        padding: 6px 14px;
         background: rgba(0, 0, 0, 0.6);
         border: 1.5px solid rgba(255, 255, 255, 0.2);
         border-radius: 20px;
@@ -251,40 +296,69 @@
         height: 14px;
       }
 
-      /* Responsive */
+      /* 响应式适配 */
       @media (max-width: 780px) {
-        #game-wrapper img.board-bg {
+        #game-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #board-inner {
           width: 100vw;
           height: auto;
+          aspect-ratio: 16 / 9; /* 保持纵横比 */
+          flex-shrink: 0;
         }
+
+        #game-wrapper img.board-bg {
+          width: 100%;
+          height: 100%;
+        }
+
         #control-panel {
-          position: absolute;
-          top: auto;
-          bottom: -50px;
-          right: 50%;
-          transform: translateX(50%);
+          position: static; /* 在棋盘下方自然流式排列 */
+          transform: none;
           flex-direction: row;
-          gap: 16px;
+          gap: 15px;
+          z-index: 20;
+          width: 100%;
+          justify-content: center;
+          margin-top: 10px;
+          padding-bottom: 20px; /* 底部留白 */
         }
+
         #step-label {
-          display: none;
+          display: block;
+          font-size: 14px;
+          margin-right: -8px; /* 拉近与数字的距离 */
         }
         #step-display {
-          font-size: 28px;
+          font-size: 24px;
+          margin-right: 8px;
+          color: #e8b74a;
+          text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
         }
         .btn {
-          font-size: 13px;
+          font-size: 12px;
           padding: 6px 14px;
           width: auto;
+          min-width: 60px;
         }
         #github-star {
-          padding: 6px;
-          gap: 0;
+          padding: 8px;
+          width: 36px;
+          height: 36px;
+          justify-content: center;
           border-radius: 50%;
+          gap: 0;
+          right: 10px;
+          top: 10px;
         }
         #github-star svg:first-child {
-          width: 16px;
-          height: 16px;
+          width: 20px;
+          height: 20px;
+          margin: 0;
         }
         #github-star .star-icon,
         #github-star .star-text {
@@ -295,34 +369,40 @@
   </head>
   <body>
     <div id="game-wrapper">
-      <img class="board-bg" src="images/board.png" alt="棋盘背景" />
+      <div id="board-inner">
+        <img class="board-bg" src="images/board.png" alt="棋盘背景" />
+        <div id="elevator-floor"></div>
 
-      <a
-        id="github-star"
-        href="https://github.com/fflow2023/BanGKlotski"
-        target="_blank"
-        rel="noopener"
-      >
-        <svg viewBox="0 0 16 16">
-          <path
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-          />
-        </svg>
-        <svg class="star-icon" viewBox="0 0 16 16">
-          <path
-            d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"
-          />
-        </svg>
-        <span class="star-text"></span>Star</span>
-      </a>
+        <a
+          id="github-star"
+          href="https://github.com/fflow2023/BanGKlotski"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg viewBox="0 0 16 16">
+            <path
+              d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+            />
+          </svg>
+          <svg class="star-icon" viewBox="0 0 16 16">
+            <path
+              d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"
+            />
+          </svg>
+          <span class="star-text">Star</span>
+        </a>
 
-      <div id="board"></div>
+        <div id="board"></div>
+      </div>
 
       <div id="control-panel">
         <div id="step-label">步 数</div>
         <div id="step-display">0</div>
         <button class="btn" id="btn-reset" onclick="resetGame()">重 置</button>
         <button class="btn" id="btn-hint" onclick="getHint()">提 示</button>
+        <button class="btn toggle-on" id="btn-voice" onclick="toggleVoice()">
+          ♪武士道！
+        </button>
       </div>
     </div>
 
@@ -475,7 +555,7 @@
         const dy = clientY - dragState.startY;
 
         // 需要滑动超过半格才触发移动
-        const threshold = Math.min(cellW, cellH) * 0.2;
+        const threshold = Math.min(cellW, cellH) * 0.1;
 
         if (dragState.moved) return; // 已经触发过移动了
 
@@ -538,51 +618,90 @@
       });
 
       // ============================================================
-      // 音效 (Web Audio API)
+      // 音效系统 (使用音频文件)
       // ============================================================
-      let audioCtx = null;
+      const audioCache = {};
 
-      function playMoveSound() {
-        if (!audioCtx)
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const t = audioCtx.currentTime;
+      // 角色语音配置表：在此处手动维护存在的音频文件
+      // 如果添加新角色的语音，请在此处添加:
+      const CHARACTER_AUDIO_MAP = {
+        eve: ["images/eve.mp3"],
+        // "michelle": ["images/michelle-1.mp3","images/michelle-2.mp3"],
+      };
 
-        const rand = (base, range) => base + (Math.random() - 0.5) * 2 * range;
+      function tryPlayAudio(src) {
+        // 先检查缓存
+        if (audioCache[src]) {
+          const a = audioCache[src].cloneNode();
+          a.volume = audioCache[src].volume || 0.6;
+          a.play().catch(() => {});
+          return;
+        }
 
-        const bufLen = Math.floor(audioCtx.sampleRate * 0.04);
-        const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
-        const data = buf.getChannelData(0);
-        for (let i = 0; i < bufLen; i++) data[i] = Math.random() * 2 - 1;
+        // 创建新音频对象
+        const audio = new Audio(src);
+        audio.volume = 0.6;
 
-        const noise = audioCtx.createBufferSource();
-        noise.buffer = buf;
+        // 尝试播放
+        const p = audio.play();
+        if (p !== undefined) {
+          p.then(() => {
+            // 播放成功才缓存
+            audioCache[src] = audio;
+          }).catch((e) => {
+            console.warn("Audio play failed or file not found:", src);
+          });
+        }
+      }
 
-        const bandpass = audioCtx.createBiquadFilter();
-        bandpass.type = "bandpass";
-        bandpass.frequency.value = rand(2200, 300);
-        bandpass.Q.value = rand(3.0, 0.8);
+      let voiceEnabled = true;
 
-        const noiseGain = audioCtx.createGain();
-        noiseGain.gain.setValueAtTime(rand(0.35, 0.05), t);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.04);
+      function toggleVoice() {
+        voiceEnabled = !voiceEnabled;
+        const btn = document.getElementById("btn-voice");
+        if (btn) {
+          btn.classList.toggle("toggle-on", voiceEnabled);
+        }
+      }
 
-        noise.connect(bandpass);
-        bandpass.connect(noiseGain);
-        noiseGain.connect(audioCtx.destination);
-        noise.start(t);
+      // 播放角色语音
+      function playCharacterAudio(charId) {
+        if (!voiceEnabled) return;
 
-        const osc = audioCtx.createOscillator();
-        const oscGain = audioCtx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(rand(420, 40), t);
-        osc.frequency.exponentialRampToValueAtTime(rand(150, 20), t + 0.05);
-        oscGain.gain.setValueAtTime(rand(0.2, 0.03), t);
-        oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+        const variants = CHARACTER_AUDIO_MAP[charId];
+        if (!variants || variants.length === 0) return;
 
-        osc.connect(oscGain);
-        oscGain.connect(audioCtx.destination);
-        osc.start(t);
-        osc.stop(t + 0.06);
+        // 纯随机选取
+        const randomIndex = Math.floor(Math.random() * variants.length);
+        const src = variants[randomIndex];
+
+        tryPlayAudio(src);
+      }
+
+      // 方块类型到音频文件的映射
+      const typeSoundMap = {
+        "2x2": "images/2x2.mp3",
+        "1x2": "images/1x2.mp3",
+        "2x1": "images/1x2.mp3",
+        "1x1": "images/1x1.mp3",
+      };
+
+      // 播放移动音效：类型音 + 角色音
+      function playMoveSound(block) {
+        // 播放方块类型对应的移动音
+        const typeSound = typeSoundMap[block.type];
+        if (typeSound) tryPlayAudio(typeSound);
+
+        // 播放角色专属音频（如果有）
+        // 跳过通用方块如 box
+        if (block.id !== "box") {
+          playCharacterAudio(block.id);
+        }
+      }
+
+      // 播放通关音效
+      function playWinSound() {
+        tryPlayAudio("images/win.mp3");
       }
 
       // ============================================================
@@ -633,7 +752,7 @@
         block.x += dx;
         block.y += dy;
         updateBlockPosition(block);
-        playMoveSound();
+        playMoveSound(block);
 
         if (!solving) {
           // 用户手动移动，使提示缓存失效
@@ -642,11 +761,15 @@
           hintStateKey = null;
           steps++;
           stepDisplay.textContent = steps;
+          updateFloorDisplay();
         }
 
         // 胜利判定
         if (block.id === "michelle" && block.x === 1 && block.y === 3) {
-          setTimeout(showVictory, 300);
+          setTimeout(() => {
+            playWinSound();
+            showVictory();
+          }, 300);
         }
 
         return true;
@@ -683,7 +806,46 @@
           btnHint.textContent = "提 示";
         }
         renderBoard();
+        updateFloorDisplay();
       }
+
+      // ============================================================
+      // 电梯楼层像素数字
+      // ============================================================
+      const FLOOR_DIGITS = {
+        1: [0,0,1,0,0, 0,1,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,1,1,1,0],
+        2: [0,1,1,1,0, 1,0,0,0,1, 0,0,0,0,1, 0,0,1,1,0, 0,1,0,0,0, 1,0,0,0,0, 1,1,1,1,1],
+        3: [0,1,1,1,0, 1,0,0,0,1, 0,0,0,0,1, 0,0,1,1,0, 0,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
+        4: [0,0,0,1,0, 0,0,1,1,0, 0,1,0,1,0, 1,0,0,1,0, 1,1,1,1,1, 0,0,0,1,0, 0,0,0,1,0],
+        5: [1,1,1,1,1, 1,0,0,0,0, 1,0,0,0,0, 1,1,1,1,0, 0,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
+        6: [0,1,1,1,0, 1,0,0,0,0, 1,0,0,0,0, 1,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
+        7: [1,1,1,1,1, 0,0,0,0,1, 0,0,0,0,1, 0,0,0,1,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0],
+      };
+      function updateFloorDisplay() {
+        const floor = Math.min(7, Math.floor(steps / 50) + 1);
+        const container = document.getElementById("elevator-floor");
+        if (!container) return;
+        container.innerHTML = "";
+        const grid = document.createElement("div");
+        grid.className = "floor-grid";
+        const pattern = FLOOR_DIGITS[floor];
+        for (let i = 0; i < 35; i++) {
+          const px = document.createElement("div");
+          px.className = "px" + (pattern[i] ? " on" : "");
+          grid.appendChild(px);
+        }
+        container.appendChild(grid);
+      }
+
+      // 初始化楼层显示
+      updateFloorDisplay();
+
+      // 调试用
+      window.setSteps = function (n) {
+        steps = n;
+        stepDisplay.textContent = n;
+        updateFloorDisplay();
+      };
 
       // ============================================================
       // 提示系统 (Web Worker BFS)
@@ -808,6 +970,7 @@
           moveBlock(move.id, move.dx, move.dy);
           steps++;
           stepDisplay.textContent = steps;
+          updateFloorDisplay();
           solving = false;
           hintIndex++;
           if (hintIndex >= hintSolution.length) {
@@ -842,6 +1005,7 @@
             moveBlock(move.id, move.dx, move.dy);
             steps++;
             stepDisplay.textContent = steps;
+            updateFloorDisplay();
             solving = false;
             hintIndex++;
             if (hintIndex >= hintSolution.length) {
